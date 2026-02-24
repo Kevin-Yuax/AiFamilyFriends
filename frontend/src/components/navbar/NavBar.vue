@@ -1,4 +1,4 @@
-<script setup>
+<script setup xmlns:RouterLink="http://www.w3.org/1999/html">
 import MenuIcon from "@/components/navbar/icon/MenuIcon.vue";
 import HomePageIcon from "@/components/navbar/icon/HomePageIcon.vue";
 import FriendIcon from "@/components/navbar/icon/FriendIcon.vue";
@@ -22,7 +22,7 @@ import SearchIcon from "@/components/navbar/icon/SearchIcon.vue";
           </div>
         </div>
 
-        <div class="navbar-center hidden md:flex w-4/5 max-w-180">
+        <div class="navbar-center hidden md:flex w-4/5 max-w-180 flex justify-center">
           <div class="join w-4/5">
             <input
               class="input input-bordered join-item rounded-l-full w-4/5 focus:ring-2 focus:ring-indigo-200 transition-all"
@@ -36,11 +36,11 @@ import SearchIcon from "@/components/navbar/icon/SearchIcon.vue";
         </div>
 
         <div class="navbar-end gap-2">
-          <button
+          <RouterLink :to="{name:'user-account-login-index'}" active-class="btn-active"
             class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full"
           >
             登 录
-          </button>
+          </RouterLink>
           <!-- 移动端搜索图标（小屏显示） -->
           <button class="btn btn-circle btn-ghost md:hidden">
             <SearchIcon class="w-5 h-5" />
@@ -68,31 +68,31 @@ import SearchIcon from "@/components/navbar/icon/SearchIcon.vue";
 
         <ul class="menu w-full grow p-2 space-y-1">
           <li>
-            <button
+            <RouterLink :to="{name:'homepage-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
               data-tip="首页"
             >
               <HomePageIcon class="w-5 h-5" />
               <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">首页</span>
-            </button>
+            </RouterLink>
           </li>
           <li>
-            <button
+            <RouterLink :to="{name:'friend-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
               data-tip="好友"
             >
               <FriendIcon class="w-5 h-5" />
               <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">好友</span>
-            </button>
+            </RouterLink>
           </li>
           <li>
-            <button
+            <RouterLink :to="{name:'create-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
               data-tip="创作"
             >
               <CreateIcon class="w-5 h-5" />
               <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">创作</span>
-            </button>
+            </RouterLink>
           </li>
         </ul>
       </div>
