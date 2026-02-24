@@ -5,6 +5,10 @@ import FriendIcon from "@/components/navbar/icon/FriendIcon.vue";
 import CameraIcon from "@/components/navbar/icon/CameraIcon.vue";
 import CreateIcon from "@/components/navbar/icon/CreateIcon.vue";
 import SearchIcon from "@/components/navbar/icon/SearchIcon.vue";
+import {useUserStore} from "@/stores/user.js";
+import UserMenu from "@/components/navbar/UserMenu.vue";
+
+const user=useUserStore()
 </script>
 
 <template>
@@ -36,15 +40,23 @@ import SearchIcon from "@/components/navbar/icon/SearchIcon.vue";
         </div>
 
         <div class="navbar-end gap-2">
-          <RouterLink :to="{name:'user-account-login-index'}" active-class="btn-active"
-            class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full"
+          <RouterLink v-if="user.isLogin()" :to="{name:'create-index'}" active-class="btn-active"
+              class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full "
+              data-tip="创作"
+            >
+              <CreateIcon class="w-5 h-5" />
+              <span class="is-drawer-close:hidden text-base whitespace-nowrap">创作</span>
+            </RouterLink>
+          <RouterLink v-if="!user.isLogin()" :to="{name:'user-account-login-index'}" active-class="btn-active"
+            class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full mr-6"
           >
             登 录
           </RouterLink>
-          <!-- 移动端搜索图标（小屏显示） -->
-          <button class="btn btn-circle btn-ghost md:hidden">
-            <SearchIcon class="w-5 h-5" />
-          </button>
+
+          <UserMenu v-else>
+
+          </UserMenu>
+
         </div>
       </nav>
 
