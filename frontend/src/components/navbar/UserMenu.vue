@@ -57,7 +57,7 @@ function closeMenu() {
       <li>
         <RouterLink
           @click="closeMenu"
-          :to="{ name: 'user-space-index' }"
+          :to="{ name: 'user-space-index' ,params: { user_id: user.id } }"
           class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
         >
           <UserProfileIcon class="w-5 h-5" />

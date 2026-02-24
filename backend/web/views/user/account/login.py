@@ -12,6 +12,8 @@ from web.models.user import UserProfile
 class LoginView(APIView):
     def post(self, request, *args, **kwargs):
         try:
+
+
             username = request.data.get('username').strip()
             password = request.data.get('password').strip()
             if not username or not password:
@@ -20,7 +22,7 @@ class LoginView(APIView):
                 })
             user=authenticate(username=username, password=password)
             if user:
-                user_profile = UserProfile.objects.get(user=username)
+                user_profile = UserProfile.objects.get(user=user)
                 refresh = RefreshToken.for_user(user)
                 response=Response({
                     'result': 'success',
@@ -46,6 +48,7 @@ class LoginView(APIView):
 
 
         except:
+
             return Response({
                 'result': '系统异常，请稍后重试',
             })

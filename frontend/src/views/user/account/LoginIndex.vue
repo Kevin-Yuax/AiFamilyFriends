@@ -1,10 +1,51 @@
 <script setup>
+import {ref} from "vue";
+import {useUserStore} from "@/stores/user.js";
+import {useRouter} from "vue-router";
+import api from "@/js/http/api.js";
 
+const username=ref('')
+const password=ref('')
+const errorMessage=ref('')
+
+const user=useUserStore()
+const router =useRouter
+
+async function handleLogin(){
+  errorMessage.value=''
+  if(!username.value.trim()){
+    errorMessage.value='用户名不能为空'
+  }else if(!password.value.trim()){
+    errorMessage.value='密码不能为空'
+  }else {
+    try {
+      const res= await api.post('api/user/account/login/',{
+          username:username.value,
+          password:password.value,
+
+      })
+      const data=res.data
+      if(data.result==='success'){
+        user.setAccessToken(data.access)
+        user.setUserInfo(data)
+        await router().push({
+          name:'homepage-index'
+        })
+      }else {
+        errorMessage.value=data.result
+      }
+
+    }catch (err){
+      console.log(err)
+    }
+  }
+
+}
 </script>
 
 <template>
   <div class="flex justify-center mt-80">
-     <fieldset class="fieldset bg-white/90 backdrop-blur-sm border border-indigo-100 rounded-2xl w-full max-w-md shadow-xl p-6 transition-all hover:shadow-2xl">
+     <form @submit.prevent="handleLogin" class="fieldset bg-white/90 backdrop-blur-sm border border-indigo-100 rounded-2xl w-full max-w-md shadow-xl p-6 transition-all hover:shadow-2xl">
       <!-- 标题区域（替换原 legend，更醒目） -->
       <div class="text-center mb-6">
         <h2 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -18,7 +59,7 @@
         <span class="label-text font-medium text-gray-700">用户名</span>
       </label>
       <input
-        type="text"
+        v-model="username" type="text"
         class="input input-bordered w-full rounded-lg border-gray-200 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200 transition-all"
         placeholder="请输入用户名"
       />
@@ -28,10 +69,11 @@
         <span class="label-text font-medium text-gray-700">密码</span>
       </label>
       <input
-        type="password"
+        v-model="password" type="password"
         class="input input-bordered w-full rounded-lg border-gray-200 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-200 transition-all"
         placeholder="请输入密码"
       />
+       <p v-if="errorMessage" class="text-sm text-red-500 mt-1">{{errorMessage}}</p>
 
       <!-- 登录按钮 -->
       <button class="btn mt-6 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white border-none hover:from-indigo-700 hover:to-purple-700 shadow-md hover:shadow-lg transition-all duration-200 rounded-lg py-3 text-base font-medium">
@@ -47,7 +89,7 @@
           注册新账号
         </RouterLink>
       </div>
-    </fieldset>
+    </form>
   </div>
 
 </template>
