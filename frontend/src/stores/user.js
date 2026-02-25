@@ -2,11 +2,12 @@ import {defineStore} from "pinia";
 import {ref} from "vue";
 
 export const useUserStore=defineStore('user',()=>{
-    const id=ref()
+    const id=ref(0)
     const username=ref('')
     const photo=ref('')
     const profile=ref('')
     const accessToken=ref('')
+    const hasPulledUserInfo =ref(false)
 
     function isLogin(){
         return !!accessToken.value
@@ -27,6 +28,11 @@ export const useUserStore=defineStore('user',()=>{
         profile.value=''
         accessToken.value=''
     }
+
+    function setHasPulledUserInfo(newStatus){
+        hasPulledUserInfo.valu=newStatus
+    }
+
     return{
         id,
         username,
@@ -37,6 +43,8 @@ export const useUserStore=defineStore('user',()=>{
         setAccessToken,
         setUserInfo,
         logout,
+        hasPulledUserInfo,
+        setHasPulledUserInfo,
     }
 
 

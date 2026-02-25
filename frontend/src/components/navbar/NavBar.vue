@@ -53,7 +53,7 @@ const user=useUserStore()
             登 录
           </RouterLink>
 
-          <UserMenu v-else>
+          <UserMenu v-else-if="user.isLogin()">
 
           </UserMenu>
 

@@ -9,7 +9,7 @@ const password=ref('')
 const errorMessage=ref('')
 
 const user=useUserStore()
-const router =useRouter
+const router =useRouter()
 
 async function handleLogin(){
   errorMessage.value=''
@@ -28,7 +28,7 @@ async function handleLogin(){
       if(data.result==='success'){
         user.setAccessToken(data.access)
         user.setUserInfo(data)
-        await router().push({
+        await router.push({
           name:'homepage-index'
         })
       }else {
@@ -36,7 +36,7 @@ async function handleLogin(){
       }
 
     }catch (err){
-      console.log(err)
+
     }
   }
 

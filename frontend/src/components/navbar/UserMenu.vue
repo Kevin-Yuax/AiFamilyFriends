@@ -3,14 +3,33 @@ import { useUserStore } from "@/stores/user.js";
 import UserSpaceIcon from "@/components/navbar/icon/UserSpaceIcon.vue";
 import UserProfileIcon from "@/components/navbar/icon/UserProfileIcon.vue";
 import UserLogoutIcon from "@/components/navbar/icon/UserLogoutIcon.vue";
+import api from "@/js/http/api.js";
+import {useRouter} from "vue-router";
 
 const user = useUserStore();
+const router=useRouter()
 
 function closeMenu() {
   const element = document.activeElement;
   if (element && element instanceof HTMLElement) element.blur();
 }
+async function handleLogou(){
+  try {
+    const res=await api.post('api/user/account/logout/')
+    if(res.data.result==='success'){
+      user.logout()
+      await router.push({
+        name:'homepage-index'
+      })
+    }
+  }catch (err){
+
+  }
+}
+
+
 </script>
+
 
 <template>
   <div class="dropdown dropdown-end">
@@ -68,7 +87,7 @@ function closeMenu() {
       <!-- 退出登录：带分隔线，视觉区分 -->
       <li class="mt-1">
         <div class="divider my-1 h-px bg-gray-100"></div>
-        <a
+        <a @click="handleLogou"
           class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer"
         >
           <UserLogoutIcon class="w-5 h-5" />
