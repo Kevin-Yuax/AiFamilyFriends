@@ -57,7 +57,7 @@ async function handleLogou(){
               <img :src="user.photo" alt="" class="object-cover" />
             </div>
           </div>
-          <span class="text-base font-semibold text-gray-800 line-clamp-1">{{ user.username }}</span>
+          <span class="text-base font-semibold text-gray-800 line-clamp-1 break-all">{{ user.username }}</span>
         </RouterLink>
         <div class="divider my-1 h-px bg-gray-100"></div>
       </li>
@@ -76,7 +76,7 @@ async function handleLogou(){
       <li>
         <RouterLink
           @click="closeMenu"
-          :to="{ name: 'user-space-index' ,params: { user_id: user.id } }"
+          :to="{ name: 'user-profile-index' ,params: { user_id: user.id } }"
           class="flex items-center gap-3 py-2.5 px-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
         >
           <UserProfileIcon class="w-5 h-5" />
