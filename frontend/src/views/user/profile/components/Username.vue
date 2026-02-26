@@ -13,7 +13,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="form-control w-full">
+  <fieldset class="fieldset">
     <label class="label">
       <span class="label-text font-medium text-gray-700 mb-2 text-[15px]">用户名</span>
     </label>
@@ -25,7 +25,7 @@ text-[14px]"
       placeholder="请输入用户名"
     />
 
-  </div>
+  </fieldset>
 </template>
 
 <style scoped>

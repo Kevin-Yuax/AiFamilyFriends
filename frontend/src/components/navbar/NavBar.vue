@@ -9,6 +9,7 @@ import {useUserStore} from "@/stores/user.js";
 import UserMenu from "@/components/navbar/UserMenu.vue";
 
 const user=useUserStore()
+console.log("123"+user.isLogin())
 </script>
 
 <template>

@@ -4,6 +4,8 @@ import NavBar from "@/components/navbar/NavBar.vue";
 import {onMounted} from "vue";
 import {useUserStore} from "@/stores/user.js";
 import {useRoute, useRouter} from "vue-router";
+import api from "@/js/http/api.js";
+
 
 const user=useUserStore()
 const route=useRoute()
@@ -11,8 +13,12 @@ const router=useRouter()
 
 onMounted(async () =>{
   try {
-    const res=await api.get('api/user/account/get_user_info')
+
+    const res=await api.get('/api/user/account/get_user_info/')
+
     const data=res.data
+    console.log(res.data)
+    console.log("1234"+data.result)
     if(data.result==='success'){
       user.setUserInfo(data)
     }
@@ -22,7 +28,7 @@ onMounted(async () =>{
     user.setHasPulledUserInfo(true)
     if(route.meta.needLogin && !user.isLogin()){
       await router.replace({
-        name:'user-account-login_index'
+        name:'user-account-login-index'
       })
     }
 

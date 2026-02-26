@@ -3,7 +3,7 @@ import Photo from "@/views/user/profile/components/Photo.vue";
 import Username from "@/views/user/profile/components/Username.vue";
 import Profile from "@/views/user/profile/components/Profile.vue";
 import { useUserStore } from "@/stores/user.js";
-import {ref, useTemplateRef} from "vue";
+import {ref, useTemplateRef, watch} from "vue";
 import {base64ToFile} from "@/js/utils/base_64-file.js";
 import api from "@/js/http/api.js";
 
@@ -13,11 +13,17 @@ const usernameRef=useTemplateRef('username-ref')
 const profileRef=useTemplateRef('profile-ref')
 const errorMessage=ref('')
 
+// 新增：监听user仓库变化，强制同步子组件数据（解决子组件不刷新问题）
+watch([() => user.username, () => user.profile, () => user.photo], () => {
+  if (usernameRef.value) usernameRef.value.myUsername = user.username;
+  if (profileRef.value) profileRef.value.myProfile = user.profile;
+  if (photoRef.value) photoRef.value.myPhoto = user.photo;
+}, { immediate: true }); // 立即执行，初始化时同步
+
 async function handleUpdate(){
   const photo=photoRef.value.myPhoto
   const username=usernameRef.value.myUsername.trim()
   const profile=profileRef.value.myProfile.trim()
-
   errorMessage.value=''
   if (!photo){
     errorMessage.value='头像不能为空'
@@ -33,12 +39,15 @@ async function handleUpdate(){
       formData.append('photo',base64ToFile(photo,'photo.png'))
     }
     try{
-      const res=await api.post('api/user/profile/update/',formData)
+      const res=await api.post('/api/user/profile/update/',formData)
       const data=res.data
+
       if (data.result === 'success'){
+        console.log('后端返回数据：', data);
         user.setUserInfo(data)
+        errorMessage.value = '更新成功！';
       }else {
-        errorMessage.value=data.result
+        errorMessage.value= data.result
       }
     }catch (err){
       console.log(err)

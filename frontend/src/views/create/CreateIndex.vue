@@ -1,9 +1,10 @@
 <script setup>
 
+import CreateCharater from "@/views/create/character/CreateCharater.vue";
 </script>
 
 <template>
-chuangzhuo
+  <CreateCharater/>
 </template>
 
 <style scoped>

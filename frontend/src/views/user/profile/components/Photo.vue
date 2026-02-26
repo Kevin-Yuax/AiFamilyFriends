@@ -87,7 +87,7 @@ defineExpose({
       <div ref="croppie-ref" class="flex flex-col justify-center my-4"></div>
 
       <div class="modal-action flex gap-4 px-6 pb-6 justify-center">
-        <button @click='modelRef.close()' class="btn btn-ghost border border-gray-200 hover:bg-gray-50 transition-all duration-200 rounded-lg w-28 py-2 text-gray-700">取消</button>
+        <button @click='modalRef.close()' class="btn btn-ghost border border-gray-200 hover:bg-gray-50 transition-all duration-200 rounded-lg w-28 py-2 text-gray-700">取消</button>
         <button @click='crop' class="btn btn-neutral hover:bg-neutral-700 text-white border-none shadow-sm hover:shadow-md transition-all duration-200 rounded-lg w-28 py-2 transform hover:-translate-y-0.5 active:translate-y-0">确定</button>
       </div>
     </div>

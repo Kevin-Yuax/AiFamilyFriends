@@ -30,7 +30,7 @@ export const useUserStore=defineStore('user',()=>{
     }
 
     function setHasPulledUserInfo(newStatus){
-        hasPulledUserInfo.valu=newStatus
+        hasPulledUserInfo.value=newStatus
     }
 
     return{
@@ -46,8 +46,4 @@ export const useUserStore=defineStore('user',()=>{
         hasPulledUserInfo,
         setHasPulledUserInfo,
     }
-
-
-
-
 })

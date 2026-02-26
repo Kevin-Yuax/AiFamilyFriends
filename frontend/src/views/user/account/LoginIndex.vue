@@ -19,7 +19,7 @@ async function handleLogin(){
     errorMessage.value='密码不能为空'
   }else {
     try {
-      const res= await api.post('api/user/account/login/',{
+      const res= await api.post('/api/user/account/login/',{
           username:username.value,
           password:password.value,
 

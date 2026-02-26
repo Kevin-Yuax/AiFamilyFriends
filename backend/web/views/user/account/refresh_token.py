@@ -3,21 +3,25 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-class RefreshToken(APIView):
+class RefreshTokenView(APIView):
     def post(self, request):
         try:
+            print("1")
             refresh_token =request.COOKIES.get('refresh_token')
             if not refresh_token:
                 return Response({
                     'result':'refresh token 不存在'
                 },status=401)
+            print("2")
             refresh=RefreshToken(refresh_token)
+            print("3")
             if settings.SIMPLE_JWT['ROTATE_REFRESH_TOKENS']:
                 refresh.set_jti()
                 response=Response({
                     'result':'success',
                     'access': str(refresh.access_token),
                 })
+                print("4")
                 response.set_cookie(
                     key='refresh_token',
                     value=str(refresh),
@@ -35,5 +39,5 @@ class RefreshToken(APIView):
 
         except:
             return Response({
-                'result': "refresh token 过期了",
+                'result': "1",
             },status=401)

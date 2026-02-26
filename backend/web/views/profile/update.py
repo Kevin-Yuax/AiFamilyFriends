@@ -42,7 +42,7 @@ class UpdatePhotoView(APIView):
             return Response({
                 'result': 'success',
                 'user_id': user.id,
-                'user_name': user.username,
+                'username': user.username,
                 'profile': user_profile.profile,
                 'photo': user_profile.photo.url,
             })
