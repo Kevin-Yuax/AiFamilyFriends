@@ -63,10 +63,10 @@ function handleSearch() {
         <div class="navbar-end gap-2">
           <RouterLink v-if="user.isLogin()" :to="{name:'create-index'}" active-class="btn-active"
               class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full "
-              data-tip="创作"
+              data-tip="角色创建"
             >
               <CreateIcon class="w-5 h-5" />
-              <span class="is-drawer-close:hidden text-base whitespace-nowrap">创作</span>
+              <span class="is-drawer-close:hidden text-base whitespace-nowrap">角色创建</span>
             </RouterLink>
           <RouterLink v-if="!user.isLogin()" :to="{name:'user-account-login-index'}" active-class="btn-active"
             class="btn btn-ghost text-base hover:bg-gray-100 hover:text-gray-900 active:bg-gray-200 transition-all duration-200 px-5 border border-gray-200 rounded-full mr-6"
@@ -103,28 +103,28 @@ function handleSearch() {
           <li>
             <RouterLink :to="{name:'homepage-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
-              data-tip="首页"
+              data-tip="角色广场"
             >
               <HomePageIcon class="w-5 h-5" />
-              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">首页</span>
+              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">角色广场</span>
             </RouterLink>
           </li>
           <li>
             <RouterLink :to="{name:'friend-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
-              data-tip="好友"
+              data-tip="聊天广场"
             >
               <FriendIcon class="w-5 h-5" />
-              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">好友</span>
+              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">聊天广场</span>
             </RouterLink>
           </li>
           <li>
             <RouterLink :to="{name:'create-index'}" active-class="menu-focus"
               class="is-drawer-close:tooltip is-drawer-close:tooltip-right py-3 px-4 rounded-lg hover:bg-indigo-50 hover:text-indigo-700 transition-colors whitespace-nowrap"
-              data-tip="创作"
+              data-tip="角色创建"
             >
               <CreateIcon class="w-5 h-5" />
-              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">创作</span>
+              <span class="is-drawer-close:hidden text-base ml-3 whitespace-nowrap">角色创建</span>
             </RouterLink>
           </li>
         </ul>

@@ -45,7 +45,7 @@ async function handleRegister(){
 </script>
 
 <template>
-  <div class="flex justify-center mt-80">
+  <div class="flex justify-center mt-20">
      <form @submit.prevent="handleRegister" class="fieldset bg-white/90 backdrop-blur-sm border border-indigo-100 rounded-2xl w-full max-w-md shadow-xl p-6 transition-all hover:shadow-2xl">
       <!-- 标题区域（替换原 legend，更醒目） -->
       <div class="text-center mb-6">

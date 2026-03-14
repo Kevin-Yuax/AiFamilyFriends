@@ -67,7 +67,7 @@ async function handleCreate(){
 
 <template>
   <div class="flex justify-center">
-    <div class="card bg-white/90 backdrop-blur-sm shadow-xl w-full max-w-lg border border-gray-200/60 transition-all hover:shadow-2xl mt-16">
+    <div class="card bg-white/90 backdrop-blur-sm shadow-xl w-full max-w-lg border border-gray-200/60 transition-all hover:shadow-2xl mt-6">
       <div class="card-body p-6 md:p-8">
         <div class="mb-6">
           <h2 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
